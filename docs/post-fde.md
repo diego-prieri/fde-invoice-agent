@@ -1,6 +1,6 @@
 # Post: mi visión de Forward Deployed Engineer
 
-> Borrador para LinkedIn (~230 palabras). Antes de publicar: reemplazá `[link al repo]` cuando el repo sea público.
+> Borrador para LinkedIn (~270 palabras).
 
 ---
 
@@ -20,7 +20,7 @@ Para practicarlo armé un proyecto: un agente que lee facturas (PDF, escaneos, f
 
 Un aviso honesto: usa datos sintéticos y un ERP simulado, y todavía me falta medirlo con un modelo real. Prefiero decirlo así antes que mostrar un número que no puedo sostener.
 
-Código y estado del proyecto: [link al repo]
+Código y estado del proyecto: https://github.com/diego-prieri/fde-invoice-agent
 
 Si trabajás como FDE: ¿qué le dirías a alguien que viene de desarrollo de producto?
 
