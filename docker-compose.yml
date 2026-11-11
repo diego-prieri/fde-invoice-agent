@@ -1,0 +1,21 @@
+services:
+  mock-erp:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      ERP_DB: /data/erp.db
+      ERP_FAIL_RATE: "0.05"   # 5% de 503 para ejercitar reintentos
+    volumes: ["erp-data:/data"]
+
+  # docker compose --profile run run --rm pipeline
+  pipeline:
+    build: .
+    profiles: ["run"]
+    depends_on: [mock-erp]
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    volumes: ["./data:/app/data", "./out:/app/out"]
+    command: python -m invoice_agent.pipeline.run --erp-url http://mock-erp:8000 --extractor simulated
+
+volumes:
+  erp-data:

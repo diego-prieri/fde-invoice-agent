@@ -1,0 +1,93 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #1c2027;
+  --muted: #667085;
+  --border: #d9dde4;
+  --accent: #2557d6;
+  --accent-text: #ffffff;
+  --warn-bg: #fff4d6;
+  --warn-text: #7a5200;
+  --bad-bg: #fde4e1;
+  --bad-text: #a1260f;
+  --changed: #e8f0ff;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171c;
+    --panel: #1d2128;
+    --text: #e8eaee;
+    --muted: #98a2b3;
+    --border: #343b46;
+    --accent: #6c93ff;
+    --accent-text: #0d1117;
+    --warn-bg: #3a2f10;
+    --warn-text: #f4cf7a;
+    --bad-bg: #432019;
+    --bad-text: #ff9b8a;
+    --changed: #1f2c4a;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 system-ui, sans-serif; background: var(--bg); color: var(--text); }
+h1 { font-size: 18px; margin: 0 0 12px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 8px; }
+h3 { font-size: 14px; margin: 16px 0 6px; }
+
+.app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+.sidebar { background: var(--panel); border-right: 1px solid var(--border); padding: 16px; overflow-y: auto; }
+.main { padding: 16px; overflow-y: auto; position: relative; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+.tab { flex: 1; padding: 6px 4px; border: 1px solid var(--border); background: transparent; color: var(--text); border-radius: 6px; cursor: pointer; font-size: 13px; }
+.tab.active { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.item { width: 100%; text-align: left; display: grid; gap: 2px; padding: 8px 10px; border: 1px solid var(--border); background: transparent; color: var(--text); border-radius: 8px; cursor: pointer; }
+.item.active { border-color: var(--accent); background: var(--changed); }
+.muted { color: var(--muted); font-size: 12px; }
+.muted a { color: var(--accent); }
+.empty { color: var(--muted); }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.pane { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.doc { width: 100%; height: 70vh; border: 1px solid var(--border); border-radius: 6px; background: #fff; object-fit: contain; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field { display: grid; gap: 3px; padding: 4px; border-radius: 6px; }
+.field > span { font-size: 12px; color: var(--muted); }
+.field.changed { background: var(--changed); }
+input, select { width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+input:disabled, select:disabled { opacity: .7; }
+input.invalid { border-color: var(--bad-text); }
+
+.items { width: 100%; border-collapse: collapse; }
+.items th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 500; }
+.items td { padding: 2px 3px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.chip { padding: 2px 8px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); font-size: 12px; }
+.chip.warn { background: var(--warn-bg); color: var(--warn-text); border-color: transparent; }
+.chip.bad { background: var(--bad-bg); color: var(--bad-text); border-color: transparent; }
+
+.actions { margin-top: 16px; display: grid; gap: 8px; }
+.row { display: flex; gap: 8px; align-items: center; }
+button.primary, button.danger { padding: 8px 14px; border: 0; border-radius: 6px; font-weight: 600; cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-text); }
+button.danger { background: var(--bad-text); color: var(--bg); }
+button.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.error { color: var(--bad-text); margin: 0; }
+.resolved { margin-top: 16px; font-weight: 600; }
+.toast { position: fixed; top: 16px; right: 16px; background: var(--accent); color: var(--accent-text); padding: 10px 14px; border-radius: 8px; z-index: 10; }
+
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; height: auto; }
+  .split { grid-template-columns: 1fr; }
+  .sidebar { border-right: 0; border-bottom: 1px solid var(--border); max-height: 40vh; }
+}

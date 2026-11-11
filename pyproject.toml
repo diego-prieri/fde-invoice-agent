@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "invoice-agent"
+version = "0.1.0"
+description = "Agente de carga de comprobantes con extracción por LLM, validaciones, ERP simulado y evals."
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.5",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+  "httpx>=0.26",
+]
+
+[project.optional-dependencies]
+claude = ["anthropic>=0.40"]
+pdf = ["weasyprint>=61"]
+images = ["pillow>=10.1", "numpy>=1.26"]
+dev = ["pytest>=8", "pillow>=10.1", "numpy>=1.26"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
